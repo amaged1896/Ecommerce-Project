@@ -194,6 +194,6 @@ class User{
         catch(e){
             res.send(e.message)
         }
-      }
+    }
 }
 module.exports = User
