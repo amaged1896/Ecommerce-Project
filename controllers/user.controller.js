@@ -24,9 +24,9 @@ class User{
             })
         }
     }
-    static addAdmin = async(req,res)=>{
+    static changeToAdmin = async(req,res)=>{
         try{
-            const user = new userModel(req.body)
+            const user = await userModel.findById(req.params.id)
             user.userType="admin"
             await user.save()
             res.status(200).send({
@@ -39,7 +39,7 @@ class User{
             res.status(500).send({
                 apiStatus:false,
                 data:e.message,
-                message:"error in register"
+                message:"change user to admin error"
             })
         }
     }

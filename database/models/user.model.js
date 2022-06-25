@@ -2,15 +2,15 @@ const mongoose = require("mongoose")
 const validator = require("validator")
 const bcryptjs=require("bcryptjs")
 const userSchema = new mongoose.Schema({
-    name:{
-        type:String,
+    fname:{
+        type: String,
         required: true,
-        trim:true
+        trim: true
     }, 
     age:{
         type:Number,
-        min:21,
-        max:60
+        min:18,
+        max:100
     }, 
     gender:{
         type:String,
@@ -36,12 +36,12 @@ const userSchema = new mongoose.Schema({
     },
     addresses:[
         {
-            details:{
+            addrOne:{
                 type:String,
                 required:true,
                 trim:true
             },
-            addrType:{
+            addrTwo:{
                 type:String,
                 required:true,
                 trim:true

@@ -10,4 +10,8 @@ const userRoutes=require("../routes/user.routes")
 app.use("/user",userRoutes)
 const productRoutes=require("../routes/product.routes")
 app.use("/product",productRoutes)
+const categoryRoutes = require("../routes/category.routes")
+app.use("/category", categoryRoutes)
+
+
 module.exports = app
