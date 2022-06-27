@@ -36,12 +36,7 @@ const userSchema = new mongoose.Schema({
     },
     addresses:[
         {
-            addrOne:{
-                type:String,
-                required:true,
-                trim:true
-            },
-            addrTwo:{
+            addrName:{
                 type:String,
                 required:true,
                 trim:true

@@ -15,7 +15,15 @@ const categorySchema = mongoose.Schema({
         trim: true,
     },
 },
-    { timeStamps: true })
+{ timeStamps: true })
+
+
+categorySchema.virtual("catProducts", {
+    ref: "Product",
+    localField: "_id",
+    foreignField: "categoryId"
+})
+
 const Category = mongoose.model("Category", categorySchema)
 
 module.exports = Category

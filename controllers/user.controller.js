@@ -3,7 +3,7 @@ const sendEmailMe = require("../helper/sendEmail.helper")
 const fs = require("fs")
 const path=require("path")
 class User{
-    //add user
+    //register New User
     static register = async(req,res)=>{
         try{
             const user = new userModel(req.body)
@@ -24,9 +24,17 @@ class User{
             })
         }
     }
+// change user to Admin
     static changeToAdmin = async(req,res)=>{
         try{
-            const user = await userModel.findById(req.params.id)
+            const user =await userModel.findById(req.params.id)
+            if (!user) {
+                res.status(404).send({
+                    apiStatus: false,
+                    data: null,
+                    message: "invalid user id"
+                })
+            }
             user.userType="admin"
             await user.save()
             res.status(200).send({
@@ -43,6 +51,7 @@ class User{
             })
         }
     }
+    // user login
     static login = async(req,res)=>{
         try{
             const user = await userModel.loginUser(req.body.email, req.body.password)
@@ -57,6 +66,7 @@ class User{
             res.status(500).send({apiStatus:false, error:e, message:e.message})
         }
     }
+
     //get all users
     static getAllUsers = async(req, res) => {
         try{
@@ -71,6 +81,7 @@ class User{
             res.status(500).send({apiStatus:false, error: e, message:e.message})
         }
     }
+
     //get single user
     static getSingleUser = async(req, res) => {
         try{
@@ -92,6 +103,7 @@ class User{
             res.status(500).send({apiStatus:false, error: e, message:e.message})
         }
     }
+
     //update password
     static changePassword = async(req,res) =>{
         try{
@@ -109,7 +121,7 @@ class User{
             res.status(500).send({apiStatus:false, error: e, message:e.message})
         }
     }
-    //update user
+    //update user Data
     static updateUser= async(req,res)=>{
         try{
             const userData = await userModel.findByIdAndUpdate(
@@ -128,7 +140,7 @@ class User{
             res.status(500).send({apiStatus:false, error: e, message:e.message})
         }
     }
-    //remove account
+    //user remove his account 
     static deleteUser= async(req,res)=>{
         try{
             const userData = await userModel.findByIdAndDelete(req.user._id)
@@ -142,6 +154,21 @@ class User{
             res.status(500).send({apiStatus:false, error: e, message:e.message})
         }
     }
+    //remove account by admin
+    static deleteUserByAdmin = async (req, res) => {
+        try {
+            const userData = await userModel.findByIdAndDelete(req.params.id)
+            res.status(200).send({
+                apiStatus: true,
+                data: userData,
+                message: "user Deleted Successfully"
+            })
+        }
+        catch (e) {
+            res.status(500).send({ apiStatus: false, error: e, message: e.message })
+        }
+    }
+    // logout from one session
     static logout = async(req,res)=>{
         try{
             req.user.tokens = req.user.tokens.filter(t=> t.token != req.token)
@@ -156,6 +183,8 @@ class User{
             res.status(500).send({apiStatus:false, error: e, message:e.message})
         }
     }
+
+    //logout of all sissions
     static logoutAll = async(req,res)=>{
         try{
             req.user.tokens = []
@@ -169,9 +198,12 @@ class User{
             res.status(500).send({apiStatus:false, error: e, message:e.message})
         }        
     }
+    // get profile Data
     static profile = async(req,res)=>{
         res.status(200).send({apiStatus:true, data:req.user, message:"data featched"})
     }
+
+    // add more addresses
     static addAddr = async(req,res)=>{
         try{
             req.user.addresses.push(req.body)
@@ -182,6 +214,7 @@ class User{
             res.status(500).send({apiStatus:false, message:e.message})
         }
     }
+    // add profile Image
     static uploadImage=  async(req, res)=>{
         try{
             const ext = path.extname(req.file.originalname)

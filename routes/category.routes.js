@@ -5,6 +5,8 @@ const multer = require('multer')
 const upload = multer({ dest: 'images/products/' })
 
 router.get("/addCat", adminAuth, categoryController.addCat)
+router.get("/allCat", categoryController.showAll)
+
 // router.get("/my-products", auth, productController.myProducts)
 // router.patch("/change-status/:id", adminAuth, productController.changeStatus)
 // router.patch('/product-image/:id', auth, upload.single('productImage'), productController.uploadImage)

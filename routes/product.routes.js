@@ -4,6 +4,7 @@ const router = require("express").Router()
 const multer = require('multer')
 const upload = multer({ dest: 'images/products/' })
 
+//add product
 router.get("/add", auth, productController.add)
 router.get("/my-products", auth, productController.myProducts)
 router.patch("/change-status/:id", adminAuth, productController.changeStatus)

@@ -3,27 +3,38 @@ const upload = multer({ dest: 'images/' })
 const userController = require("../controllers/user.controller")
 const router = require("express").Router()
 const { auth, adminAuth } = require("../middleware/auth.middleware")
-//add user
+
+// main website Routes
+
+//Register New User
 router.post("/register", userController.register)
-router.post("/addAdmin/:id", adminAuth, userController.changeToAdmin)
 //login user
 router.post("/login", userController.login)
 //update user
 router.patch("/update", auth, userController.updateUser)
 //update password
-router.patch("/updatePassword", auth, userController.changePassword)
-//remove account
-router.delete("/delete", userController.deleteUser)
-//add Address to user
-router.post("/addAddr", auth, userController.addAddr)
+router.patch("/update-password", auth, userController.changePassword)
+//add Addresses to user
+router.post("/add-address", auth, userController.addAddr)
+// add profile image
 router.patch('/profile', auth, upload.single('profile'), userController.uploadImage)
-module.exports=router
+//user remove his account
+router.delete("/delete-my-account", auth, userController.deleteUser)
+// logout from all sessions
+router.post("/logout-all", auth, userController.logoutAll)
+//logout from existing session
+router.post("/logout", auth, userController.logout)
 
-
-
+// Dashbord-User-Routes
 
 //get all users
-router.get("/all", userController.getAllUsers)            //waiting for dash-board
+router.get("/all", userController.getAllUsers)
 //get single user
-// router.get("/all/:id", auth, userController.getSingleUser)    // waiting...if needed
-//update status (activate - deactivate)
+router.get("/all/:id", auth, userController.getSingleUser) 
+//change user to Admin
+router.patch("/addAdmin/:id", adminAuth, userController.changeToAdmin)
+//remove account by admin
+router.delete("/delete-user/:id", adminAuth, userController.deleteUserByAdmin)
+
+
+module.exports=router

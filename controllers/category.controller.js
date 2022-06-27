@@ -7,16 +7,34 @@ class Category {
     static addCat = async (req, res) => {
         //detail => req.body, userId=> req.user
         try {
-            const categoryData = new categoryModel(req.body)
-            await categoryData.save()
+            const categoryData = await new categoryModel({ ...req.body, userId: req.user._id })
+            categoryData.save()
             res.status(200).send({
                 apiStatus: true,
                 data: categoryData,
-                message: "added"
+                message: "category added successfuly"
             })
         }
         catch (e) {
             res.status(500).send({ apiStatus: false, message: e.message })
+        }
+    }
+    static showAll = async(req,res)=>{
+        try{
+            const catData = await categoryModel.find()
+            catData.save()
+            res.status(200).send({
+                data:catData,
+                apiStatus:true,
+                message:"all categories fetched successfully"
+            })
+        }
+        catch(e){
+            res.status(500).send({
+                apiStatus: false,
+                error:e,
+                message:e.message
+            })
         }
     }
 

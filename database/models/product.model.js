@@ -5,6 +5,11 @@ const productSchema = mongoose.Schema({
         ref: "User",
         required: true
     },
+    categoryId:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Category",
+        required: true
+    },
     productName: {
         type: String,
         trim: true,
@@ -13,6 +18,21 @@ const productSchema = mongoose.Schema({
     productImage: {
         type: String,
         trim: true,
+    },
+    productQuantity:{
+
+    },
+    productPrice:{
+
+    },
+    productDescription:{
+
+    },
+    productReview:{
+
+    },
+    isAddedToCart:{
+
     },
     status: {
         type: Boolean,
