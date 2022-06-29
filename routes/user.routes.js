@@ -1,14 +1,14 @@
 const multer  = require('multer')
-const upload = multer({ dest: 'images/' })
+const upload = multer({ dest: 'images/profile/' })
 const userController = require("../controllers/user.controller")
 const router = require("express").Router()
 const { auth, adminAuth } = require("../middleware/auth.middleware")
 
 // main website Routes
 
-//Register New User
+//Register New User ===>first step *
 router.post("/register", userController.register)
-//login user
+//login user ==>second step *
 router.post("/login", userController.login)
 //update user
 router.patch("/update", auth, userController.updateUser)
@@ -30,7 +30,7 @@ router.post("/logout", auth, userController.logout)
 //get all users
 router.get("/all", userController.getAllUsers)
 //get single user
-router.get("/all/:id", auth, userController.getSingleUser) 
+router.get("/single/:id", auth, userController.getSingleUser) 
 //change user to Admin
 router.patch("/addAdmin/:id", adminAuth, userController.changeToAdmin)
 //remove account by admin

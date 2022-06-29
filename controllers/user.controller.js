@@ -218,7 +218,7 @@ class User{
     static uploadImage=  async(req, res)=>{
         try{
             const ext = path.extname(req.file.originalname)
-            const newName = "images/"+req.file.fieldname + Date.now()+ext
+            const newName = "images/profile/"+req.file.fieldname + Date.now()+ext
             fs.rename(req.file.path, newName, ()=>{})
             req.user.image = newName
             await req.user.save()

@@ -20,21 +20,29 @@ const productSchema = mongoose.Schema({
         trim: true,
     },
     productQuantity:{
-
+        type:Number,
+        required:true
     },
     productPrice:{
-
+        type:Number,
+        required:true,
     },
     productDescription:{
+        type:String,
+        trim:true,
 
     },
     productReview:{
-
+        type: String,
+        trim: true,
     },
-    isAddedToCart:{
 
+    availability: {
+        type: Boolean,
+        default: true
     },
-    status: {
+
+    isAddedToCart: {
         type: Boolean,
         default: false
     }

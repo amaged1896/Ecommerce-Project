@@ -2,13 +2,20 @@ const categoryController = require("../controllers/category.controller")
 const { auth, adminAuth } = require("../middleware/auth.middleware")
 const router = require("express").Router()
 const multer = require('multer')
-const upload = multer({ dest: 'images/products/' })
+const upload = multer({ dest: 'images/categories/' })
 
-router.get("/addCat", adminAuth, categoryController.addCat)
-router.get("/allCat", categoryController.showAll)
+// add category
+router.post("/add", adminAuth, categoryController.addCat)
+// update category
+router.patch("/update", adminAuth, categoryController.updateCat)
+// show all category
+router.get("/all", adminAuth, categoryController.showAll)
+// show all category products
+router.get("/all-prods", adminAuth, categoryController.showCatProds)
+// show my categories
+router.get("/my-categories",categoryController.myCategories)
+//add category image
+router.patch('/image/:id', adminAuth, upload.single('productImage'), categoryController.uploadImage)
 
-// router.get("/my-products", auth, productController.myProducts)
-// router.patch("/change-status/:id", adminAuth, productController.changeStatus)
-// router.patch('/product-image/:id', auth, upload.single('productImage'), productController.uploadImage)
-
+// router.patch("/change-status/:id", adminAuth, categoryController.changeStatus)
 module.exports = router

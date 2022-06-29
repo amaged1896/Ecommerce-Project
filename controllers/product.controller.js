@@ -20,22 +20,40 @@ class Product {
     }
 
     //change product status
-    static changeStatus = async (req, res) => {
+    static checkAvailability = async (req, res) => {
         try {
-            // await userModel.findByIdAndUpdate(req.params.id, {status:true})
-            const productData = await productModel.findById(req.params.id)
-            productData.status = !productData.status
-            await productData.save()
+            const selectedProduct = await productModel.findById(req.params.id)
+            const availability = selectedProduct.productQuantity >0 ? true : false
             res.status(200).send({
                 apiStatus: true,
-                data: productData,
-                message: "Status Changed"
+                data: availability,
+                message: "availability status returned"
             })
         }
         catch (e) {
             res.status(500).send({ apiStatus: false, error: e, message: e.message })
         }
     }
+
+    // update category
+    static updateProduct = async (req, res) => {
+        try {
+            const productData = await productModel.findByIdAndUpdate(
+                req.params.id,
+                req.body,
+                { runValidators: true }
+            )
+            res.status(200).send({
+                apiStatus: true,
+                data: categoryData,
+                message: "Product Data Updated...."
+            })
+        }
+        catch (e) {
+            res.status(500).send({ apiStatus: false, error: e, message: e.message })
+        }
+    }
+
     //upload image
     static uploadImage = async (req, res) => {
         try {
@@ -51,10 +69,24 @@ class Product {
             res.send(e.message)
         }
     }
-
+    // check quantity
+    static quantityCheck = async (req, res) => {
+        try {
+            const productData = await productModel.find(req.params.name)
+            await productData.save()
+            res.status(200).send({
+                apiStatus: true,
+                data: productData,
+                message: "added"
+            })
+        }
+        catch (e) {
+            res.status(500).send({ error: e.message })
+        }
+    }
+// ***************************************************************************************************************
     // user relationship part
     static myProducts = async (req, res) => {
-        // await productModel.find({userId:req.user._id})
         try {
             await req.user.populate("myProducts")
             res.status(200).send({ data: req.user.myProducts })
@@ -66,7 +98,6 @@ class Product {
 
     // category relationship part
     static catProducts = async (req, res) => {
-        // await productModel.find({userId:req.user._id})
         try {
             await req.user.populate("catProducts")
             res.status(200).send({ data: req.category.catProducts })
@@ -75,6 +106,8 @@ class Product {
             res.status(500).send({ err: e.message })
         }
     }
+// *************************************************************************************************************
+    
     
 }
 module.exports = Product

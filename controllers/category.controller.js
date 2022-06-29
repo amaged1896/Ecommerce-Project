@@ -5,7 +5,6 @@ const categoryModel = require("../database/models/category.model")
 
 class Category {
     static addCat = async (req, res) => {
-        //detail => req.body, userId=> req.user
         try {
             const categoryData = await new categoryModel({ ...req.body, userId: req.user._id })
             categoryData.save()
@@ -22,7 +21,6 @@ class Category {
     static showAll = async(req,res)=>{
         try{
             const catData = await categoryModel.find()
-            catData.save()
             res.status(200).send({
                 data:catData,
                 apiStatus:true,
@@ -38,38 +36,42 @@ class Category {
         }
     }
 
-
-    // RelationShip part
-    // static myProducts = async (req, res) => {
-    //     // await categoryModel.find({userId:req.user._id})
-    //     try {
-    //         await req.user.populate("myProducts")
-    //         res.status(200).send({ data: req.user.myProducts })
-    //     }
-    //     catch (e) {
-    //         res.status(500).send({ err: e.message })
-    //     }
-    // }
-
-
-
-    //change product status
-    static changeStatus = async (req, res) => {
+    // update category
+    static updateCat = async (req, res) => {
         try {
-            // await userModel.findByIdAndUpdate(req.params.id, {status:true})
-            const categoryData = await categoryModel.findById(req.params.id)
-            categoryData.status = !categoryData.status
-            await categoryData.save()
+            const categoryData = await categoryModel.findByIdAndUpdate(
+                req.params.id,
+                req.body,
+                { runValidators: true }
+            )
             res.status(200).send({
                 apiStatus: true,
                 data: categoryData,
-                message: "Status Changed"
+                message: "Category Data Updated...."
             })
         }
         catch (e) {
             res.status(500).send({ apiStatus: false, error: e, message: e.message })
         }
     }
+
+    static showCatProds = async (req, res) => {
+        try {
+            
+            const categoryProds = await productModel.find({categoryId:req.params.id}) 
+            res.status(200).send({
+                apiStatus: true,
+                data: categoryProds,
+                message: "Category products fetched successfully..."
+            })
+        }
+        catch (e) {
+            res.status(500).send({ apiStatus: false, error: e, message: e.message })
+        }
+    }
+    
+    
+
     //upload image
     static uploadImage = async (req, res) => {
         try {
@@ -83,6 +85,16 @@ class Category {
         }
         catch (e) {
             res.send(e.message)
+        }
+    }
+
+    static myCategories = async (req, res) => {
+        try {
+            await req.user.populate("myCategories")
+            res.status(200).send({ data: req.user.myCategories })
+        }
+        catch (e) {
+            res.status(500).send({ err: e.message })
         }
     }
 

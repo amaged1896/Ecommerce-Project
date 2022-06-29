@@ -28,3 +28,19 @@ console.log(decoded)
 
 
 
+//change ca status
+    // static changeStatus = async (req, res) => {
+    //     try {
+    //         const categoryData = await categoryModel.findById(req.params.id)
+    //         categoryData.status = !categoryData.status
+    //         await categoryData.save()
+    //         res.status(200).send({
+    //             apiStatus: true,
+    //             data: categoryData,
+    //             message: "Status Changed"
+    //         })
+    //     }
+    //     catch (e) {
+    //         res.status(500).send({ apiStatus: false, error: e, message: e.message })
+    //     }
+    // }
