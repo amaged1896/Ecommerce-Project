@@ -12,6 +12,8 @@ const productRoutes=require("../routes/product.routes")
 app.use("/product",productRoutes)
 const categoryRoutes = require("../routes/category.routes")
 app.use("/category", categoryRoutes)
+const cartRoutes = require("../routes/cart.routes")
+app.use("/cart", cartRoutes)
 
 
 module.exports = app

@@ -30,7 +30,6 @@ const productSchema = mongoose.Schema({
     productDescription:{
         type:String,
         trim:true,
-
     },
     productReview:{
         type: String,

@@ -4,7 +4,6 @@ const fs = require("fs")
 const productModel = require("../database/models/product.model")
 class Product {
     static add = async (req, res) => {
-        //detail => req.body, userId=> req.user
         try {
             const productData = new productModel({ ...req.body, userId: req.user._id })
             await productData.save()
@@ -35,7 +34,21 @@ class Product {
         }
     }
 
-    // update category
+    static deleteProduct = async (req, res) => {
+        try {
+            const productData = await productModel.findByIdAndDelete(req.params.id)
+            res.status(200).send({
+                apiStatus: true,
+                data: productData,
+                message: "Delete Product"
+            })
+        }
+        catch (e) {
+            res.status(500).send({ apiStatus: false, error: e, message: e.message })
+        }
+    }
+
+    // update product
     static updateProduct = async (req, res) => {
         try {
             const productData = await productModel.findByIdAndUpdate(
@@ -106,6 +119,8 @@ class Product {
             res.status(500).send({ err: e.message })
         }
     }
+
+    // order relationship part
 // *************************************************************************************************************
     
     

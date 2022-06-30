@@ -5,7 +5,7 @@ const multer = require('multer')
 const upload = multer({ dest: 'images/products/' })
 
 //add product
-router.get("/add", adminAuth, productController.add)
+router.post("/add", adminAuth, productController.add)
 //update product
 router.get("/update-product", adminAuth, productController.updateProduct)
 //update product image
@@ -14,5 +14,8 @@ router.patch('/product-image/:id',adminAuth, upload.single('productImage'), prod
 router.get("/my-products", auth, productController.myProducts)
 // change product status dependes on quantity 
 router.get("/check-availability/:id", productController.checkAvailability)
+// delete product
+router.delete("/deleteProduct", adminAuth, productController.deleteProduct)    //need test
+
 
 module.exports = router

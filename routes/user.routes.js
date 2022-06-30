@@ -28,11 +28,11 @@ router.post("/logout", auth, userController.logout)
 // Dashbord-User-Routes
 
 //get all users
-router.get("/all", userController.getAllUsers)
+router.get("/all", userController.getAllUsers)      ///will be used on main site also
 //get single user
-router.get("/single/:id", auth, userController.getSingleUser) 
+router.get("/single/:id", auth, userController.getSingleUser)  ///will be used on main site also
 //change user to Admin
-router.patch("/addAdmin/:id", adminAuth, userController.changeToAdmin)
+router.patch("/addAdmin/:id", adminAuth, userController.changeToAdmin)  //only on dashbord
 //remove account by admin
 router.delete("/delete-user/:id", adminAuth, userController.deleteUserByAdmin)
 
