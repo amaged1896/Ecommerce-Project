@@ -1,1 +1,62 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+  font-family: 'Montserrat', 'Poppins';
+}
+
+.first-row {
+  height: 250px;
+
+}
+
+.second-row {
+  height: 300px;
+}
+
+.small-cat,
+.big-cat {
+  background-image: url("assets/images/img.jpg");
+  background-size: cover;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.des-cat {
+  padding: 35px 25px !important;
+  background-color: rgba(255, 255, 255, 0.457);
+}
+
+.des-cat p {
+  font-weight: 700;
+  font-size: 25px;
+  color: black;
+}
+
+.des-cat:hover {
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+ul li {
+  margin-left: 20px;
+  font-size: 1rem;
+
+}
+
+.cart {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart span {
+  font-size: 25px;
+  top: 30%;
+  left: 35%;
+  position: absolute;
+}
