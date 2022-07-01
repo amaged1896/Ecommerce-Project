@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-categories',
@@ -6,13 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./categories.component.css'],
 })
 export class CategoriesComponent implements OnInit {
-  constructor() {}
+  constructor( private router:Router) {}
   ngOnInit(): void {}
   categoriesArray = [
     {
       userId: 1,
       id: 1,
-      title: 'T-shirt',
+      title: 'T-shirts',
       body: 'quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto',
       imgUrl: 'https://via.placeholder.com/600/771796',
     },
@@ -80,4 +81,7 @@ export class CategoriesComponent implements OnInit {
       imgUrl: 'https://via.placeholder.com/400/771796',
     },
   ];
+  openCategoryProducts(catId:number){
+    this.router.navigate(['/products',catId])
+  }
 }
