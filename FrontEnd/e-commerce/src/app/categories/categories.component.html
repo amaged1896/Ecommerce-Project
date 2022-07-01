@@ -1,36 +1,9 @@
 <div class="container mt-3 px-4">
-    <div class="row first-row gx-5">
-      <div class="col-4">
-        <div class="small-cat">
-          <div class="des-cat"><p>HATS</p></div>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="small-cat">
-          <div class="des-cat"><p>JACKETS</p></div>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="small-cat">
-          <div class="des-cat"><p>SNEAKERS</p></div>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="small-cat">
-          <div class="des-cat"><p>HATS</p></div>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="small-cat">
-          <div class="des-cat"><p>JACKETS</p></div>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="small-cat">
-          <div class="des-cat"><p>SNEAKERS</p></div>
+    <div class="row items gx-3 gy-4">
+      <div class="col-4" *ngFor="let category of categoriesArray">
+        <div class="cat" style="background-image: url({{category.imgUrl}}); background-size: cover;">
+          <div class="cat-name"><p>{{category.title}}<br><span>Shop Now</span></p></div>
         </div>
       </div>
     </div>
 </div>
-
-

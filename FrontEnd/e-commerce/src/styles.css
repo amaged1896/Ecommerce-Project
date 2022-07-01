@@ -3,60 +3,101 @@
 * {
   font-family: 'Montserrat', 'Poppins';
 }
-
-.first-row {
-  height: 250px;
-
+.crown{
+  font-size: 50px;
+  color:#7d7c7c;
 }
-
-.second-row {
-  height: 300px;
+.items {
+  height:500px;
 }
-
-.small-cat,
-.big-cat {
-  background-image: url("assets/images/img.jpg");
-  background-size: cover;
-  height: 100%;
+.cat{
+  /* background-image: url("assets/images/img.jpg"); */
+  /* background-size: cover; */
   display: flex;
   justify-content: center;
   align-items: center;
-
+  text-align: center;
+  height: 300px;
 }
-
-.des-cat {
-  padding: 35px 25px !important;
-  background-color: rgba(255, 255, 255, 0.457);
+.cat-name {
+  /* padding: 35px 25px !important; */
+  background-color: #ffffff75;
+  width: 150px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
-.des-cat p {
-  font-weight: 700;
+.cat-name p {
+  font-weight: bold;
   font-size: 25px;
-  color: black;
+  color: #2d2d2d;
 }
-
-.des-cat:hover {
+.cat-name span{
+  font-size: 20px;
+  color: #2d2d2d;
+  font-weight: normal;
+}
+.cat-name:hover {
   background-color: rgba(255, 255, 255, 0.75);
 }
-
 ul li {
   margin-left: 20px;
   font-size: 1rem;
 
 }
-
 .cart {
   position: relative;
-  width: 60px;
-  height: 60px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  font-size: 1.75rem;
+  bottom: 14px;
+}
+.cart span {
+  font-size: 17px;
+  top: 22px;
+  left: 38%;
+  position: absolute;
 }
 
-.cart span {
-  font-size: 25px;
-  top: 30%;
-  left: 35%;
+/* products page styles start*/
+.card-body{
+  display: flex;
+  justify-content: space-between;
+}
+.card img{
+  position: relative;
+
+}
+.float-button{
   position: absolute;
+  top:30%;
+  left: 25%;
+  opacity: 0.60;
+  color: white;
+}
+.card:hover .float-button{
+  opacity: 1;
+}
+/* *********************order style************************ */
+.table td:not(:first-child){
+  vertical-align: middle;
+  padding-left: 20px;
+}
+.table td:last-child{
+  font-weight: 600;
+  font-size: 20px;
+}
+.total-price{
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+
+}
+.pay{
+  display: flex;
+    justify-content: flex-end;
+  margin-bottom: 40px;
+}
+.pay input{
+  width: 120px;
+  height:30px;
 }

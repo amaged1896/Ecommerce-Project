@@ -9,6 +9,9 @@ import { NavbarComponent } from './layout/navbar/navbar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 import { CategoriesComponent } from './categories/categories.component';
+import { ProductsComponent } from './products/products.component';
+import { AuthenticationComponent } from './authentication/authentication.component';
+import { OrderComponent } from './order/order.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,10 @@ import { CategoriesComponent } from './categories/categories.component';
     HeaderComponent,
     FooterComponent,
     NavbarComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    ProductsComponent,
+    AuthenticationComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,
