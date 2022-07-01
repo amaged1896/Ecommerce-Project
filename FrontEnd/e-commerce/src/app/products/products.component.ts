@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-products',
@@ -104,7 +105,7 @@ export class ProductsComponent implements OnInit {
 
   filterdArray = this.productsArray;
 
-  constructor(private activatedRoute: ActivatedRoute) {}
+  constructor(private activatedRoute: ActivatedRoute, private cart: CartService) { }
 
   ngOnInit(): void {
     this.recivedCatId = Number(
@@ -112,7 +113,12 @@ export class ProductsComponent implements OnInit {
     );
     this.filterCatProducts();
   }
-  //
+  // 1- add to cart
+  AddToCart(product: any) {
+    // push in array
+    this.cart.userCart.push(product)
+    //
+  }
   filterCatProducts() {
     this.filterdArray = this.productsArray.filter(
       (el) => el.catId == this.recivedCatId

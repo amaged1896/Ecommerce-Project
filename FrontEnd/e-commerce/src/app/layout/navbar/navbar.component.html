@@ -1,7 +1,9 @@
 <div class="container">
   <nav class="navbar navbar-expand-sm navbar-light">
     <div class="container-fluid">
-      <a class="navbar-brand" routerLink="/categories"><fa-icon [icon]="faCrown" class="crown"></fa-icon></a>
+      <a class="navbar-brand" routerLink="/categories"
+        ><fa-icon [icon]="faCrown" class="crown"></fa-icon
+      ></a>
       <button
         class="navbar-toggler"
         type="button"
@@ -19,18 +21,29 @@
       >
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" routerLink="/categories" routerLinkActive="active">SHOP</a>
+            <a
+              class="nav-link"
+              aria-current="page"
+              routerLink="/categories"
+              routerLinkActive="active"
+              >SHOP</a
+            >
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/contact" routerLinkActive="active">CONTACT</a>
+            <a class="nav-link" routerLink="/contact" routerLinkActive="active"
+              >CONTACT</a
+            >
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/login" routerLinkActive="active">SIGN IN</a>
+            <a class="nav-link" routerLink="/login" routerLinkActive="active"
+              >SIGN IN</a
+            >
           </li>
           <li class="nav-item">
             <div class="cart">
               <a class="nav-link" routerLink="/order"
-                ><span>2</span><i class="bi bi-bag fa-2"></i
+                ><span>{{ cartNum.length }}</span
+                ><i class="bi bi-bag fa-2"></i
               ></a>
             </div>
           </li>
