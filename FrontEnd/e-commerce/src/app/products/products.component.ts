@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CartService } from '../services/cart.service';
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'app-products',
@@ -8,8 +9,10 @@ import { CartService } from '../services/cart.service';
   styleUrls: ['./products.component.css'],
 })
 export class ProductsComponent implements OnInit {
-  recivedCatId: number = 0;
 
+  recivedCatId: any ;
+
+  //array before filteration
   productsArray = [
     {
       userId: 1,
@@ -102,26 +105,36 @@ export class ProductsComponent implements OnInit {
       price: '90$',
     },
   ];
+  // array after filtiration
+  filterdArray:any = [];
 
-  filterdArray = this.productsArray;
-
-  constructor(private activatedRoute: ActivatedRoute, private cart: CartService) { }
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private cart: CartService,
+    private prdService: ProductService
+  ) {}
 
   ngOnInit(): void {
-    this.recivedCatId = Number(
-      this.activatedRoute.snapshot.paramMap.get('catId')
-    );
+    this.recivedCatId = this.activatedRoute.snapshot.paramMap.get('catId')
+
     this.filterCatProducts();
   }
   // 1- add to cart
   AddToCart(product: any) {
     // push in array
-    this.cart.userCart.push(product)
+    this.cart.userCart.push(product);
     //
   }
+  // filterCatProducts() {
+  //   this.filterdArray = this.productsArray.filter(
+  //     (el) => el.catId == this.recivedCatId
+  //   );
+  // }
   filterCatProducts() {
-    this.filterdArray = this.productsArray.filter(
-      (el) => el.catId == this.recivedCatId
-    );
+    this.prdService
+      .getProductsByCatId(this.recivedCatId)
+      .subscribe((products) => {
+        this.filterdArray = products.data;
+      });
   }
 }

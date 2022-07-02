@@ -5,11 +5,11 @@ const multer = require('multer')
 const upload = multer({ dest: 'images/categories/' })
 
 // add category
-router.post("/add", adminAuth, categoryController.addCat)
+router.post("/add",adminAuth,categoryController.addCat)
 // update category
 router.patch("/update", adminAuth, categoryController.updateCat)
 // show all category
-router.get("/all", adminAuth, categoryController.showAll)
+router.get("/all", categoryController.showAll)
 // show all category products
 router.get("/all-prods", adminAuth, categoryController.showCatProds)
 // show my categories

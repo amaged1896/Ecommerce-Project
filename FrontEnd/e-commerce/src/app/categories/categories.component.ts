@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { CategoryService } from '../services/category.service';
 
 @Component({
   selector: 'app-categories',
@@ -7,9 +9,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./categories.component.css'],
 })
 export class CategoriesComponent implements OnInit {
-  constructor( private router:Router) {}
-  ngOnInit(): void {}
-  categoriesArray = [
+  constructor(private router: Router, private catService: CategoryService) {}
+  ngOnInit(): void {
+    this.getAllCategories();
+  }
+  testingCategoriesArray = [
     {
       userId: 1,
       id: 1,
@@ -81,7 +85,20 @@ export class CategoriesComponent implements OnInit {
       imgUrl: 'https://via.placeholder.com/400/771796',
     },
   ];
-  openCategoryProducts(catId:number){
-    this.router.navigate(['/products',catId])
+  imgUrl: any = 'https://via.placeholder.com/600/771796';
+  categoriesArray: any;
+  openCategoryProducts(catId: number) {
+    this.router.navigate(['/products', catId]);
+  }
+  getAllCategories() {
+    this.catService.getAllCategories().subscribe((categories) => {
+      this.categoriesArray = categories.data;
+    });
   }
 }
+
+// this.catService
+//       .getProductsByCatId(this.recivedCatId)
+//       .subscribe((products) => {
+//         this.filterdArray = products.data;
+//       });

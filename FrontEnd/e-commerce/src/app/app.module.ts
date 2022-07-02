@@ -13,6 +13,7 @@ import { AuthenticationComponent } from './authentication/authentication.compone
 import { OrderComponent } from './order/order.component';
 import { ContactComponent } from './contact/contact.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -24,14 +25,15 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     AuthenticationComponent,
     OrderComponent,
     ContactComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    HttpClientModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

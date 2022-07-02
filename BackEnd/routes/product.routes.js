@@ -10,6 +10,8 @@ router.post("/add", adminAuth, productController.add)
 router.get("/update-product", adminAuth, productController.updateProduct)
 //update product image
 router.patch('/product-image/:id',adminAuth, upload.single('productImage'), productController.uploadImage)
+// get products by categoryId
+router.get("/cat-products/:id", productController.getProductsByCatId)
 // get all user products
 router.get("/my-products", auth, productController.myProducts)
 // change product status dependes on quantity 

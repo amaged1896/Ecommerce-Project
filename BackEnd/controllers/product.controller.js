@@ -97,6 +97,20 @@ class Product {
             res.status(500).send({ error: e.message })
         }
     }
+    // getProductsByCatId
+    static getProductsByCatId = async (req, res) => {
+        try {
+            const catProducts = await productModel.find({ categoryId:req.params.id})
+            res.status(200).send({
+                apiStatus: true,
+                data: catProducts,
+                message: "data fetched"
+            })
+        }
+        catch (e) {
+            res.status(500).send({ apiStatus: false, error: e, message: e.message })
+        }
+    }
 // ***************************************************************************************************************
     // user relationship part
     static myProducts = async (req, res) => {
