@@ -14,6 +14,7 @@ import { OrderComponent } from './order/order.component';
 import { ContactComponent } from './contact/contact.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HttpClientModule } from '@angular/common/http'
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { HttpClientModule } from '@angular/common/http'
     AppRoutingModule,
     FontAwesomeModule,
     HttpClientModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
